@@ -1,0 +1,803 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="description" content="Abdullah Amin Quraishi - Full Stack Web Developer specializing in Laravel, ASP.NET Core, JavaScript, React, MySQL, and SQL Server.">
+  <title>Abdullah Amin Quraishi | Full Stack Web Developer</title>
+  <style>
+    :root{
+      --bg:#0b1020;
+      --bg2:#11182f;
+      --card:rgba(255,255,255,.07);
+      --card2:rgba(255,255,255,.12);
+      --text:#eef2ff;
+      --muted:#b9c2e6;
+      --accent:#7c5cff;
+      --accent2:#00d4ff;
+      --line:rgba(255,255,255,.12);
+      --shadow:0 20px 60px rgba(0,0,0,.35);
+      --radius:20px;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(124,92,255,.20), transparent 30%),
+        radial-gradient(circle at top right, rgba(0,212,255,.14), transparent 28%),
+        linear-gradient(180deg, var(--bg), #060914 100%);
+      color:var(--text);
+      overflow-x:hidden;
+    }
+
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block}
+    .container{
+      width:min(1180px, 92%);
+      margin:0 auto;
+    }
+
+    .nav{
+      position:sticky;
+      top:0;
+      z-index:50;
+      backdrop-filter: blur(18px);
+      background:rgba(10,14,28,.5);
+      border-bottom:1px solid var(--line);
+    }
+
+    .nav-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:16px 0;
+      gap:16px;
+    }
+
+    .logo{
+      font-weight:800;
+      letter-spacing:.5px;
+      font-size:1.15rem;
+    }
+    .logo span{color:var(--accent2)}
+    .menu{
+      display:flex;
+      gap:22px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+    .menu a{
+      color:var(--muted);
+      transition:.25s;
+      font-size:.95rem;
+    }
+    .menu a:hover{color:var(--text)}
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:14px 22px;
+      border-radius:999px;
+      border:1px solid transparent;
+      background:linear-gradient(135deg, var(--accent), var(--accent2));
+      color:#fff;
+      font-weight:700;
+      box-shadow:var(--shadow);
+      transition:.25s transform, .25s opacity;
+      cursor:pointer;
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .btn.secondary{
+      background:transparent;
+      border-color:var(--line);
+      color:var(--text);
+      box-shadow:none;
+    }
+
+    .hero{
+      padding:72px 0 28px;
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:36px;
+      align-items:center;
+      min-height:calc(100vh - 80px);
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 16px;
+      border-radius:999px;
+      background:rgba(255,255,255,.06);
+      border:1px solid var(--line);
+      color:var(--muted);
+      margin-bottom:22px;
+      width:max-content;
+    }
+    .badge i{
+      width:10px;height:10px;border-radius:50%;
+      background:#22c55e;
+      box-shadow:0 0 0 6px rgba(34,197,94,.12);
+    }
+
+    h1{
+      font-size:clamp(2.6rem, 6vw, 5.4rem);
+      line-height:1.02;
+      margin-bottom:18px;
+    }
+    h1 .grad{
+      background:linear-gradient(135deg, #fff, #9ddcff 40%, #7c5cff 75%, #00d4ff);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+    .lead{
+      color:var(--muted);
+      font-size:1.08rem;
+      line-height:1.8;
+      max-width:640px;
+      margin-bottom:28px;
+    }
+
+    .hero-actions{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      margin-bottom:26px;
+    }
+
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:14px;
+      margin-top:28px;
+    }
+
+    .stat, .card, .project, .testimonial, .contact-box{
+      background:linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.05));
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+    }
+
+    .stat{
+      padding:18px;
+      text-align:center;
+    }
+    .stat strong{
+      display:block;
+      font-size:1.5rem;
+      margin-bottom:6px;
+    }
+    .stat span{color:var(--muted);font-size:.92rem}
+
+    .profile{
+      position:relative;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      min-height:520px;
+    }
+
+    .glow{
+      position:absolute;
+      width:260px;height:260px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(124,92,255,.5), rgba(0,212,255,.1), transparent 70%);
+      filter:blur(20px);
+      animation:float 6s ease-in-out infinite;
+    }
+
+    .hero-card{
+      position:relative;
+      width:min(410px, 100%);
+      padding:26px;
+      border-radius:30px;
+      background:linear-gradient(180deg, rgba(17,24,47,.95), rgba(9,13,26,.92));
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      transform:perspective(1000px) rotateY(-8deg) rotateX(8deg);
+      transition:.3s transform;
+    }
+    .hero-card:hover{transform:perspective(1000px) rotateY(0) rotateX(0)}
+    .hero-card .top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom:18px;
+    }
+    .dots{display:flex;gap:8px}
+    .dots span{
+      width:12px;height:12px;border-radius:50%;
+      background:rgba(255,255,255,.18);
+    }
+    .avatar{
+      width:100%;
+      aspect-ratio:1/1;
+      border-radius:24px;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(0,212,255,.35), transparent 35%),
+        radial-gradient(circle at 70% 20%, rgba(124,92,255,.35), transparent 25%),
+        linear-gradient(145deg, #11182f, #080b16);
+      border:1px solid var(--line);
+      display:grid;
+      place-items:center;
+      overflow:hidden;
+      position:relative;
+    }
+    .avatar::before{
+      content:"";
+      position:absolute;
+      inset:18px;
+      border-radius:20px;
+      border:1px dashed rgba(255,255,255,.16);
+    }
+    .avatar .name{
+      text-align:center;
+      z-index:1;
+    }
+    .avatar .name h3{font-size:1.6rem;margin-bottom:8px}
+    .avatar .name p{color:var(--muted)}
+
+    section{
+      padding:84px 0;
+    }
+    .section-head{
+      display:flex;
+      justify-content:space-between;
+      gap:18px;
+      align-items:end;
+      margin-bottom:28px;
+      flex-wrap:wrap;
+    }
+    .section-head h2{
+      font-size:clamp(1.8rem, 3vw, 2.8rem);
+    }
+    .section-head p{
+      color:var(--muted);
+      max-width:640px;
+      line-height:1.7;
+    }
+
+    .grid{
+      display:grid;
+      gap:18px;
+    }
+    .skills-grid{
+      grid-template-columns:repeat(4, minmax(0,1fr));
+    }
+    .card{
+      padding:22px;
+      transition:.25s transform, .25s border-color;
+    }
+    .card:hover{transform:translateY(-4px);border-color:rgba(124,92,255,.4)}
+    .card h3{margin-bottom:10px}
+    .card p{color:var(--muted);line-height:1.7;font-size:.96rem}
+    .skill-bar{
+      height:10px;
+      background:rgba(255,255,255,.08);
+      border-radius:999px;
+      overflow:hidden;
+      margin-top:16px;
+    }
+    .skill-bar span{
+      display:block;
+      height:100%;
+      border-radius:999px;
+      background:linear-gradient(90deg, var(--accent), var(--accent2));
+    }
+
+    .projects-grid{
+      grid-template-columns:repeat(3, minmax(0,1fr));
+    }
+    .project{
+      overflow:hidden;
+    }
+    .thumb{
+      height:190px;
+      background:
+        linear-gradient(135deg, rgba(124,92,255,.35), rgba(0,212,255,.22)),
+        linear-gradient(180deg, #11182f, #060914);
+      border-bottom:1px solid var(--line);
+      position:relative;
+    }
+    .thumb::after{
+      content:"";
+      position:absolute;
+      inset:22px;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.16);
+      background:rgba(255,255,255,.04);
+    }
+    .project-body{padding:22px}
+    .tags{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}
+    .tag{
+      font-size:.82rem;
+      color:#dce7ff;
+      padding:7px 10px;
+      background:rgba(255,255,255,.08);
+      border:1px solid var(--line);
+      border-radius:999px;
+    }
+
+    .testimonials-grid{
+      grid-template-columns:repeat(3, minmax(0,1fr));
+    }
+    .testimonial{padding:22px}
+    .quote{color:var(--muted);line-height:1.8;margin:12px 0 16px}
+    .person{display:flex;align-items:center;gap:12px}
+    .avatar-sm{
+      width:46px;height:46px;border-radius:50%;
+      background:linear-gradient(135deg, var(--accent), var(--accent2));
+    }
+    .person strong{display:block}
+    .person span{color:var(--muted);font-size:.9rem}
+
+    .contact-wrap{
+      display:grid;
+      grid-template-columns:.9fr 1.1fr;
+      gap:18px;
+    }
+    .contact-box{padding:24px}
+    .contact-box p{color:var(--muted);line-height:1.8;margin-bottom:18px}
+    form{
+      display:grid;
+      gap:14px;
+    }
+    input, textarea{
+      width:100%;
+      padding:15px 16px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.05);
+      color:var(--text);
+      outline:none;
+      font:inherit;
+    }
+    input:focus, textarea:focus{border-color:rgba(0,212,255,.55)}
+    textarea{min-height:150px;resize:vertical}
+
+    footer{
+      padding:28px 0 40px;
+      border-top:1px solid var(--line);
+      color:var(--muted);
+      text-align:center;
+    }
+
+    .reveal{
+      opacity:0;
+      transform:translateY(20px);
+      transition:.6s ease;
+    }
+    .reveal.show{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    @keyframes float{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-16px)}
+    }
+
+    @media (max-width: 1024px){
+      .hero,.contact-wrap{grid-template-columns:1fr}
+      .profile{min-height:auto;padding-top:12px}
+      .skills-grid,.projects-grid,.testimonials-grid{grid-template-columns:repeat(2, minmax(0,1fr))}
+    }
+
+    @media (max-width: 640px){
+      .menu{display:none}
+      .stats,.skills-grid,.projects-grid,.testimonials-grid{grid-template-columns:1fr}
+      .hero{padding-top:42px}
+      h1{font-size:2.7rem}
+    }
+
+    .profile-img{
+    width:170px;
+    height:170px;
+    border-radius:50%;
+    object-fit:cover;
+    border:4px solid rgba(255,255,255,.15);
+    box-shadow:0 15px 40px rgba(0,0,0,.35);
+    margin-bottom:20px;
+   }
+   
+   .avatar{
+       display:flex;
+       flex-direction:column;
+       justify-content:center;
+       align-items:center;
+       text-align:center;
+   }
+
+   .project-img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    transition:0.4s ease;
+  }
+  
+  .project:hover .project-img{
+      transform:scale(1.05);
+  }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <div class="logo">Quraishi<span> Dev</span></div>
+      <nav class="menu">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="btn" href="#contact">Hire Me</a>
+    </div>
+  </header>
+
+  <main id="home" class="container">
+    <section class="hero">
+      <div class="reveal">
+        <div class="badge"><i></i> Available for freelance work</div>
+        <h1>I build <span class="grad">Fast, Secure & Scalable</span> Web Applications.</h1>
+        <p class="lead">
+            I am a Full Stack Web Developer specialized in building modern, responsive, and scalable web applications using Laravel, ASP.NET Core, and JavaScript. I help businesses and clients turn ideas into fast, secure, and professional digital solutions.
+       </p>
+        <div class="hero-actions">
+          <a class="btn" href="#projects">View Projects</a>
+          <a class="btn secondary" href="#contact">Contact Me</a>
+        </div>
+
+      <div class="stats">
+          <div class="stat">
+            <strong>5+</strong>
+            <span>Projects Delivered</span>
+          </div>
+          <div class="stat">
+            <strong>Fast</strong>
+            <span>Delivery & Clean Code</span>
+          </div>
+          <div class="stat">
+            <strong>100%</strong>
+            <span>Client Satisfaction Focus</span>
+          </div>
+         </div>
+      </div>
+
+      <div class="profile reveal">
+        <div class="glow"></div>
+        <div class="hero-card">
+          <div class="top">
+            <div class="dots"><span></span><span></span><span></span></div>
+            <div style="color:var(--muted);font-size:.9rem;">Portfolio Preview</div>
+          </div>
+          <div class="avatar">
+            <img src="images/mypic.png" alt="Abdullah Amin Quraishi" class="profile-img">
+            <div class="name">
+              <h3>Abdullah Amin Quraishi</h3>
+              <p>Full Stack Web Developer  • JavaScript  • Laravel  • ASP.NET Core</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+     <section id="about">
+       <div class="section-head reveal">
+         <div>
+           <h2>About Me</h2>
+         </div>
+         <p>
+           I am a Computer Science graduate specializing in Software Engineering with a strong focus on Full Stack Web Development. I build modern, scalable, and user-friendly web applications using technologies like Laravel, ASP.NET Core, React, and relational databases.
+         </p>
+       </div>
+     
+       <div class="grid skills-grid">
+         <div class="card reveal">
+           <h3>Full Stack Development</h3>
+           <p>I develop complete web applications including frontend, backend, and database integration using modern technologies.</p>
+         </div>
+     
+         <div class="card reveal">
+           <h3>Backend Systems</h3>
+           <p>Experience in building APIs, authentication systems, and business logic using Laravel and ASP.NET Core.</p>
+         </div>
+     
+         <div class="card reveal">
+           <h3>Frontend Development</h3>
+           <p>Creating responsive and interactive user interfaces using React, HTML, CSS, Bootstrap, and Tailwind CSS.</p>
+         </div>
+     
+         <div class="card reveal">
+           <h3>Database Design</h3>
+           <p>Designing and managing efficient databases using MySQL and SQL Server for scalable applications.</p>
+         </div>
+       </div>
+     </section>
+
+    <section id="skills">
+       <div class="section-head reveal">
+         <div>
+           <h2>Skills</h2>
+         </div>
+         <p>
+           My technical skills cover full stack web development including frontend, backend, APIs, and database systems. I focus on building scalable and modern web applications.
+         </p>
+       </div>
+     
+       <div class="grid skills-grid">
+     
+         <div class="card reveal">
+           <h3>Frontend Development</h3>
+           <div class="skill-bar"><span style="width:92%"></span></div>
+         </div>
+     
+         <div class="card reveal">
+           <h3>JavaScript & React</h3>
+           <div class="skill-bar"><span style="width:88%"></span></div>
+         </div>
+     
+         <div class="card reveal">
+           <h3>Laravel (PHP)</h3>
+           <div class="skill-bar"><span style="width:90%"></span></div>
+         </div>
+     
+         <div class="card reveal">
+           <h3>ASP.NET Core</h3>
+           <div class="skill-bar"><span style="width:85%"></span></div>
+         </div>
+     
+         <div class="card reveal">
+           <h3>Database (MySQL / SQL Server)</h3>
+           <div class="skill-bar"><span style="width:88%"></span></div>
+         </div>
+     
+         <div class="card reveal">
+           <h3>API Development</h3>
+           <div class="skill-bar"><span style="width:86%"></span></div>
+         </div>
+     
+         <div class="card reveal">
+           <h3>Responsive Design</h3>
+           <div class="skill-bar"><span style="width:90%"></span></div>
+         </div>
+     
+         <div class="card reveal">
+           <h3>Git & Version Control</h3>
+           <div class="skill-bar"><span style="width:80%"></span></div>
+         </div>
+     
+       </div>
+     </section>
+
+     <section id="projects">
+        <div class="section-head reveal">
+          <div>
+            <h2>Projects</h2>
+          </div>
+      
+          <p>
+            Below are some of my real-world projects developed using Laravel, JavaScript, ASP.NET Core, and MySQL. These systems focus on solving practical business problems.
+          </p>
+        </div>
+      
+        <div class="grid projects-grid">
+      
+          <article class="project reveal">
+            <div class="thumb">
+             <img src="images/hostel_mis.png" alt="Hostel Management System" class="project-img">
+           </div>
+            <div class="project-body">
+              <h3>Hostel Management System</h3>
+      
+              <div class="tags">
+                <span class="tag">Laravel</span>
+                <span class="tag">JavaScript</span>
+                <span class="tag">MySQL</span>
+              </div>
+      
+              <p class="lead" style="font-size:.95rem;margin:0;">
+                A web-based hostel management system designed to manage student records, room allocation, and payments efficiently.
+              </p>
+            </div>
+          </article>
+      
+          <article class="project reveal">
+            <div class="thumb">
+             <img src="images/dental_mis.png" alt="Dental Clinic Management System" class="project-img">
+            </div>
+            <div class="project-body">
+              <h3>Dental Clinic Management System</h3>
+      
+              <div class="tags">
+                <span class="tag">Laravel</span>
+                <span class="tag">JavaScript</span>
+                <span class="tag">MySQL</span>
+              </div>
+      
+              <p class="lead" style="font-size:.95rem;margin:0;">
+                A clinic management web application for patient records, appointments, and treatment tracking with a secure database system.
+              </p>
+            </div>
+          </article>
+      
+          <article class="project reveal">
+            <div class="thumb">
+             <img src="images/e-commerce.jpg" alt="Hostel Management System" class="project-img">
+            </div>
+            <div class="project-body">
+              <h3>E-Commerce Website</h3>
+      
+              <div class="tags">
+                <span class="tag">ASP.NET Core</span>
+                <span class="tag">C#</span>
+                <span class="tag">SQL Server</span>
+              </div>
+      
+              <p class="lead" style="font-size:.95rem;margin:0;">
+                A fully functional e-commerce web application built with ASP.NET Core including product management, shopping cart, and order processing.
+              </p>
+            </div>
+          </article>
+      
+        </div>
+      </section>
+
+    <section>
+       <div class="section-head reveal">
+         <div>
+           <h2>Testimonials</h2>
+         </div>
+     
+         <p>
+           Feedback from project development experiences and collaboration-based work.
+         </p>
+       </div>
+     
+       <div class="grid testimonials-grid">
+     
+         <div class="testimonial reveal">
+           <div class="quote">
+             “The Hostel Management System was well structured and worked smoothly with all required features like room allocation and student management.”
+           </div>
+           <div class="person">
+             <div class="avatar-sm"><img src="images/bawar.jpg" alt="" style="border-radius:50%;"></div>
+             <div><strong>Project Feedback</strong><span>Laravel System</span></div>
+           </div>
+         </div>
+     
+         <div class="testimonial reveal">
+           <div class="quote">
+             “The Dental Clinic Management System handled appointments and patient records efficiently with a clean and user-friendly interface.”
+           </div>
+           <div class="person">
+             <div class="avatar-sm"><img src="images/javid.jpg" alt="" style="border-radius:50%;"></div>
+             <div><strong>Project Feedback</strong><span>Web Application</span></div>
+           </div>
+         </div>
+     
+         <div class="testimonial reveal">
+           <div class="quote">
+             “The E-Commerce system built with ASP.NET Core was stable, fast, and included proper product and order management features.”
+           </div>
+           <div class="person">
+             <div class="avatar-sm"><img src="images/mustafa.jpg" alt="" style="border-radius:50%;"></div>
+             <div><strong>System Review</strong><span>ASP.NET Core Project</span></div>
+           </div>
+         </div>
+     
+       </div>
+     </section>
+
+    <section id="contact">
+       <div class="section-head reveal">
+         <div>
+           <h2>Contact</h2>
+         </div>
+     
+         <p>
+           Need a website, web application, or custom software? I am available for freelance work and open to new projects.
+         </p>
+       </div>
+     
+       <div class="contact-wrap">
+     
+         <!-- LEFT SIDE -->
+         <div class="contact-box reveal">
+           <h3>Let's Work Together</h3>
+     
+           <p>
+             I build modern web applications using Laravel, ASP.NET Core, React, and databases like MySQL and SQL Server.
+           </p>
+     
+           <p><strong>Email:</strong> abdullahminshinwari22@gmail.com</p>
+           <p><strong>Phone / WhatsApp:</strong> +93 793 520 295</p>
+           <p><strong>Location:</strong> Nangarhar, Afghanistan</p>
+     
+           <!-- WhatsApp Button -->
+           <a class="btn" href="https://wa.me/93793520295" target="_blank">
+             Chat on WhatsApp
+           </a>
+         </div>
+     
+         <!-- RIGHT SIDE FORM -->
+         <div class="contact-box reveal">
+           <form id="contactForm">
+     
+             <input type="text" name="name" placeholder="Your Name" required />
+             <input type="email" name="email" placeholder="Your Email" required />
+             <input type="text" name="subject" placeholder="Project Type (Website, App, etc.)" />
+     
+             <textarea name="message" placeholder="Describe your project in detail..." required></textarea>
+     
+             <button class="btn" type="submit">Send Message</button>
+     
+           </form>
+         </div>
+     
+       </div>
+     </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © 2026 Abdullah Amin Quraishi. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    const revealEls = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('show');
+      });
+    }, { threshold: 0.12 });
+
+    revealEls.forEach(el => io.observe(el));
+
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', e => {
+        const target = document.querySelector(link.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+  <!-- this is script code is for email -->
+<script>
+  (function(){
+    emailjs.init("5CAC7xwZdjsFGyzph"); // replace this
+  })();
+
+  document.getElementById("contactForm").addEventListener("submit", function(e){
+    e.preventDefault();
+
+    emailjs.sendForm(
+      "service_b1ptbok",
+      "template_ij7ikbn",
+      this
+    ).then(function () {
+        alert("Message sent successfully!");
+        document.getElementById("contactForm").reset();
+    }).catch(function (error) {
+        console.error(error);
+        alert("Failed to send message.");
+    });
+  });
+</script>
+</body>
+</html>
